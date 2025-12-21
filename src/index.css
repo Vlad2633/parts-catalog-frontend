@@ -1,68 +1,117 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+:root{
+  --bg:#0b1020;
+  --panel:#111a33;
+  --panel2:#0f1730;
+  --text:#e9ecf5;
+  --muted:#a8b0c7;
+  --border:rgba(255,255,255,.10);
+  --accent:#6ea8fe;
+  --accent2:#8b5cf6;
+  --danger:#ef4444;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --r:14px;
+  --shadow: 0 12px 30px rgba(0,0,0,.35);
+  --shadow2: 0 6px 18px rgba(0,0,0,.25);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--text);
+  background:
+    radial-gradient(900px 500px at 15% 10%, rgba(110,168,254,.18), transparent 60%),
+    radial-gradient(900px 500px at 85% 20%, rgba(139,92,246,.18), transparent 60%),
+    var(--bg);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a{color:inherit; text-decoration:none}
+a:hover{opacity:.9}
+
+.container{max-width:1100px; margin:0 auto; padding:20px}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  box-shadow:var(--shadow2);
+  backdrop-filter: blur(10px);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.navbar{
+  display:flex; align-items:center; gap:12px;
+  padding:14px 16px;
 }
-button:hover {
-  border-color: #646cff;
+.brand{
+  display:flex; gap:10px; align-items:center; font-weight:800; letter-spacing:.3px;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.badge{
+  font-size:12px; color:var(--muted);
+  border:1px solid var(--border);
+  padding:4px 8px; border-radius:999px;
+  background: rgba(255,255,255,.04);
+}
+.spacer{flex:1}
+
+.btn{
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  transition: transform .05s ease, background .15s ease;
+}
+.btn:hover{background: rgba(255,255,255,.10)}
+.btn:active{transform: translateY(1px)}
+.btn.primary{
+  border:1px solid rgba(110,168,254,.45);
+  background: linear-gradient(180deg, rgba(110,168,254,.25), rgba(110,168,254,.10));
+}
+.btn.danger{
+  border:1px solid rgba(239,68,68,.45);
+  background: linear-gradient(180deg, rgba(239,68,68,.22), rgba(239,68,68,.08));
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.input, select, textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.05);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:12px;
+  outline:none;
 }
+.input::placeholder, textarea::placeholder{color:rgba(233,236,245,.55)}
+select{cursor:pointer}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:14px;
+}
+
+.item{
+  padding:14px;
+}
+.itemTitle{font-weight:800; margin-bottom:6px}
+.itemMeta{font-size:12px; color:var(--muted); margin-top:6px}
+.price{
+  font-weight:800;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.toolbar{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  padding:14px;
+}
+.row{display:flex; gap:10px; flex-wrap:wrap}
+.row > *{flex:1; min-width:180px}
+
+.h1{font-size:22px; margin:0}
+.h2{font-size:18px; margin:0}
+.muted{color:var(--muted)}
+.hr{height:1px; background:var(--border); border:0; margin:0}

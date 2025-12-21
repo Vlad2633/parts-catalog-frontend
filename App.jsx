@@ -1,7 +1,7 @@
 import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { loadToken, clearToken, saveToken } from "./store/session";
-import { setAuthToken } from "./api/http"; // якщо в тебе працює тільки з .js — поверни ".js"
+import { setAuthToken } from "./api/http";
 import { AuthApi } from "./api/auth";
 
 import CatalogPage from "./pages/CatalogPage";
@@ -43,6 +43,7 @@ export default function App() {
 
   const onLoginSuccess = async (token) => {
     saveToken(token);
+    setAuthToken(token);
     const me = await AuthApi.me();
     setUser(me);
     nav("/");
@@ -60,17 +61,18 @@ export default function App() {
 
         <Link className="btn" to="/cart">Корзина</Link>
 
-
         {user ? (
           <>
             <span className="badge">
               {user.name} · {user.role}
             </span>
+
             {user.role === "ADMIN" && (
               <Link className="btn primary" to="/admin">
                 Адмін
               </Link>
             )}
+
             <button className="btn danger" onClick={onLogout}>
               Вийти
             </button>
@@ -96,6 +98,7 @@ export default function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/login" element={<LoginPage onLoginSuccess={onLoginSuccess} />} />
         <Route path="/register" element={<RegisterPage />} />
+
         <Route
           path="/admin"
           element={
@@ -104,6 +107,7 @@ export default function App() {
             </Guard>
           }
         />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
