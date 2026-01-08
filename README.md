@@ -76,13 +76,13 @@ Frontend звертається до REST API backend-частини для:
 ### Тестові облікові записи
 Admin 
 ```bash
-Email: admin@test.com
+Email: vlad@test.com
 Password: 12345678
 ```
 User 
 ```bash
-Email: user@test.com
-Password: 12345678
+Email: vlad2@test.com
+Password: 123456
 ```
 (Акаунти створюються через backend або безпосередньо в БД).
 
